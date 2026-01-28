@@ -1,1 +1,27 @@
+const button = document.getElementById("updateBtn");
+const message = document.getElementById("finalMessage");
+
+button.addEventListener("click", () => {
+  message.classList.remove("hidden");
+  button.style.display = "none";
+
+  launchConfetti();
+});
+
+function launchConfetti() {
+  const duration = 3000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 4,
+      spread: 60,
+      origin: { y: 0.6 }
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+}
 
